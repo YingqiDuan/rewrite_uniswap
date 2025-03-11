@@ -1,58 +1,58 @@
 # Uniswap V2 Rewrite
 
-这个仓库包含了重写的Uniswap V2协议，将核心和外围合约整合在一个仓库中。在原始代码的基础上，我们已将所有合约升级到Solidity 0.8.19版本。
+This repository contains a rewritten version of the Uniswap V2 protocol, integrating core and peripheral contracts in a single repository. Based on the original code, all contracts have been upgraded to Solidity 0.8.19.
 
-## 结构
+## Structure
 
-- `src/`: 主要合约文件
-  - `UniswapV2Factory.sol`: 创建交易对的工厂合约
-  - `UniswapV2Pair.sol`: 用于代币交换的交易对合约
-  - `UniswapV2ERC20.sol`: 流动性代币的ERC20实现
-  - `UniswapV2Router02.sol`: 用于与交易对交互的路由合约
+- `src/`: Main contract files
+  - `UniswapV2Factory.sol`: Factory contract for creating trading pairs
+  - `UniswapV2Pair.sol`: Pair contract for token exchange
+  - `UniswapV2ERC20.sol`: ERC20 implementation for liquidity tokens
+  - `UniswapV2Router02.sol`: Router contract for interacting with pairs
   
-- `src/interfaces/`: 接口文件
-  - `IUniswapV2Factory.sol`: 工厂接口
-  - `IUniswapV2Pair.sol`: 交易对接口
-  - `IUniswapV2ERC20.sol`: ERC20接口
-  - `IUniswapV2Router01.sol`: Router01接口
-  - `IUniswapV2Router02.sol`: Router02接口
-  - `IERC20.sol`: ERC20代币接口
-  - `IWETH.sol`: 包装以太币接口
-  - `IUniswapV2Callee.sol`: 闪电贷回调接口
+- `src/interfaces/`: Interface files
+  - `IUniswapV2Factory.sol`: Factory interface
+  - `IUniswapV2Pair.sol`: Pair interface
+  - `IUniswapV2ERC20.sol`: ERC20 interface
+  - `IUniswapV2Router01.sol`: Router01 interface
+  - `IUniswapV2Router02.sol`: Router02 interface
+  - `IERC20.sol`: ERC20 token interface
+  - `IWETH.sol`: Wrapped Ether interface
+  - `IUniswapV2Callee.sol`: Flash loan callback interface
   
-- `src/libraries/`: 库文件
-  - `Math.sol`: 数学工具函数
-  - `SafeMath.sol`: 安全数学运算（尽管Solidity 0.8+已内置溢出检查，但保留以保持原始逻辑）
-  - `UQ112x112.sol`: 用于价格计算的定点数学
-  - `UniswapV2Library.sol`: Router使用的辅助函数
-  - `TransferHelper.sol`: 安全代币转账工具
+- `src/libraries/`: Library files
+  - `Math.sol`: Mathematical utility functions
+  - `SafeMath.sol`: Safe math operations (preserved for original logic, although Solidity 0.8+ has built-in overflow checks)
+  - `UQ112x112.sol`: Fixed-point math for price calculations
+  - `UniswapV2Library.sol`: Helper functions used by the Router
+  - `TransferHelper.sol`: Safe token transfer utilities
 
-## 编译器版本
+## Compiler Version
 
-- 所有合约: Solidity 0.8.19（已从原始版本升级）
-- 原始版本:
-  - 核心合约 (Factory, Pair, ERC20): Solidity 0.5.16
-  - 外围合约 (Router): Solidity 0.6.6
+- All contracts: Solidity 0.8.19 (upgraded from original version)
+- Original versions:
+  - Core contracts (Factory, Pair, ERC20): Solidity 0.5.16
+  - Peripheral contracts (Router): Solidity 0.6.6
 
-## 版本升级说明
+## Upgrade Notes
 
-为了在现代Solidity环境中运行，我们对源代码进行了以下修改：
+To run in a modern Solidity environment, we made the following modifications to the source code:
 
-1. 升级所有合约到Solidity 0.8.19
-2. 添加了SPDX许可证标识符
-3. 移除了构造函数的`public`修饰符（0.8+不再需要）
-4. 为接口实现添加了`override`修饰符
-5. 将`uint(-1)`替换为`type(uint256).max`
-6. 在`pairFor`函数中添加了`uint160`显式转换以满足0.8+的地址转换要求
-7. 保留了`SafeMath`库，即使在0.8+中整数运算已内置溢出检查
+1. Upgraded all contracts to Solidity 0.8.19
+2. Added SPDX license identifiers
+3. Removed the `public` modifier from constructors (no longer needed in 0.8+)
+4. Added `override` modifiers for interface implementations
+5. Replaced `uint(-1)` with `type(uint256).max`
+6. Added explicit `uint160` casting in the `pairFor` function to satisfy 0.8+ address conversion requirements
+7. Retained the `SafeMath` library, even though 0.8+ has built-in overflow checks for integer operations
 
-## 源代码
+## Source Code
 
-此代码基于原始的Uniswap V2仓库：
+This code is based on the original Uniswap V2 repositories:
 - [Uniswap V2 Core](https://github.com/Uniswap/v2-core)
 - [Uniswap V2 Periphery](https://github.com/Uniswap/v2-periphery)
 - [Uniswap Solidity Library](https://github.com/Uniswap/solidity-lib)
 
-## 许可证
+## License
 
-Uniswap V2协议使用GPL-3.0许可证。
+The Uniswap V2 protocol is licensed under GPL-3.0.
