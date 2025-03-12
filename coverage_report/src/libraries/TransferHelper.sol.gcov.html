@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - lcov.info - src/libraries/TransferHelper.sol</title>
+  <title>LCOV - lcov_filtered.info - src/libraries/TransferHelper.sol</title>
   <link rel="stylesheet" type="text/css" href="../../gcov.css">
 </head>
 
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test:</td>
-            <td class="headerValue">lcov.info</td>
+            <td class="headerValue">lcov_filtered.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntryHi">100.0&nbsp;%</td>
@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2025-03-11 15:39:42</td>
+            <td class="headerValue">2025-03-11 16:59:23</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryHi">100.0&nbsp;%</td>
@@ -79,36 +79,36 @@
 <span id="L17"><span class="lineNum">      17</span>              :         );</span>
 <span id="L18"><span class="lineNum">      18</span>              :     }</span>
 <span id="L19"><span class="lineNum">      19</span>              : </span>
-<span id="L20"><span class="lineNum">      20</span> <span class="tlaGNC">           3 :     function safeTransfer(</span></span>
+<span id="L20"><span class="lineNum">      20</span> <span class="tlaGNC">           5 :     function safeTransfer(</span></span>
 <span id="L21"><span class="lineNum">      21</span>              :         address token,</span>
 <span id="L22"><span class="lineNum">      22</span>              :         address to,</span>
 <span id="L23"><span class="lineNum">      23</span>              :         uint256 value</span>
 <span id="L24"><span class="lineNum">      24</span>              :     ) internal {</span>
 <span id="L25"><span class="lineNum">      25</span>              :         // bytes4(keccak256(bytes('transfer(address,uint256)')));</span>
-<span id="L26"><span class="lineNum">      26</span> <span class="tlaGNC">           3 :         (bool success, bytes memory data) = token.call(abi.encodeWithSelector(0xa9059cbb, to, value));</span></span>
-<span id="L27"><span class="lineNum">      27</span> <span class="tlaGNC">           3 :         require(</span></span>
+<span id="L26"><span class="lineNum">      26</span> <span class="tlaGNC">           5 :         (bool success, bytes memory data) = token.call(abi.encodeWithSelector(0xa9059cbb, to, value));</span></span>
+<span id="L27"><span class="lineNum">      27</span> <span class="tlaGNC">           5 :         require(</span></span>
 <span id="L28"><span class="lineNum">      28</span>              :             success &amp;&amp; (data.length == 0 || abi.decode(data, (bool))),</span>
 <span id="L29"><span class="lineNum">      29</span>              :             'TransferHelper::safeTransfer: transfer failed'</span>
 <span id="L30"><span class="lineNum">      30</span>              :         );</span>
 <span id="L31"><span class="lineNum">      31</span>              :     }</span>
 <span id="L32"><span class="lineNum">      32</span>              : </span>
-<span id="L33"><span class="lineNum">      33</span> <span class="tlaGNC">          73 :     function safeTransferFrom(</span></span>
+<span id="L33"><span class="lineNum">      33</span> <span class="tlaGNC">          81 :     function safeTransferFrom(</span></span>
 <span id="L34"><span class="lineNum">      34</span>              :         address token,</span>
 <span id="L35"><span class="lineNum">      35</span>              :         address from,</span>
 <span id="L36"><span class="lineNum">      36</span>              :         address to,</span>
 <span id="L37"><span class="lineNum">      37</span>              :         uint256 value</span>
 <span id="L38"><span class="lineNum">      38</span>              :     ) internal {</span>
 <span id="L39"><span class="lineNum">      39</span>              :         // bytes4(keccak256(bytes('transferFrom(address,address,uint256)')));</span>
-<span id="L40"><span class="lineNum">      40</span> <span class="tlaGNC">          73 :         (bool success, bytes memory data) = token.call(abi.encodeWithSelector(0x23b872dd, from, to, value));</span></span>
-<span id="L41"><span class="lineNum">      41</span> <span class="tlaGNC">          73 :         require(</span></span>
+<span id="L40"><span class="lineNum">      40</span> <span class="tlaGNC">          81 :         (bool success, bytes memory data) = token.call(abi.encodeWithSelector(0x23b872dd, from, to, value));</span></span>
+<span id="L41"><span class="lineNum">      41</span> <span class="tlaGNC">          81 :         require(</span></span>
 <span id="L42"><span class="lineNum">      42</span>              :             success &amp;&amp; (data.length == 0 || abi.decode(data, (bool))),</span>
 <span id="L43"><span class="lineNum">      43</span>              :             'TransferHelper::transferFrom: transferFrom failed'</span>
 <span id="L44"><span class="lineNum">      44</span>              :         );</span>
 <span id="L45"><span class="lineNum">      45</span>              :     }</span>
 <span id="L46"><span class="lineNum">      46</span>              : </span>
-<span id="L47"><span class="lineNum">      47</span> <span class="tlaGNC">           8 :     function safeTransferETH(address to, uint256 value) internal {</span></span>
-<span id="L48"><span class="lineNum">      48</span> <span class="tlaGNC">           8 :         (bool success, ) = to.call{value: value}(new bytes(0));</span></span>
-<span id="L49"><span class="lineNum">      49</span> <span class="tlaGNC">           8 :         require(success, 'TransferHelper::safeTransferETH: ETH transfer failed');</span></span>
+<span id="L47"><span class="lineNum">      47</span> <span class="tlaGNC">          10 :     function safeTransferETH(address to, uint256 value) internal {</span></span>
+<span id="L48"><span class="lineNum">      48</span> <span class="tlaGNC">          10 :         (bool success, ) = to.call{value: value}(new bytes(0));</span></span>
+<span id="L49"><span class="lineNum">      49</span> <span class="tlaGNC">          10 :         require(success, 'TransferHelper::safeTransferETH: ETH transfer failed');</span></span>
 <span id="L50"><span class="lineNum">      50</span>              :     }</span>
 <span id="L51"><span class="lineNum">      51</span>              : }</span>
         </pre>

@@ -6,30 +6,62 @@ import "../src/libraries/UQ112x112.sol";
 
 contract UQ112x112Test is Test {
     function testEncode() public {
-        uint112 y = 10;
-        uint224 result = UQ112x112.encode(y);
-        uint224 expected = uint224(y) * 2**112;
-        assertEq(result, expected, "Encode function should multiply by 2^112");
+        uint112 value = 5;
+        uint224 encoded = UQ112x112.encode(value);
+        
+        // 5 * 2^112 = 5 * 5192296858534827628530496329220096
+        uint224 expected = 25961484292674138142652481646100480;
+        
+        assertEq(encoded, expected, "Encoding should multiply by 2^112");
+    }
+    
+    function testEncodeZero() public {
+        uint112 value = 0;
+        uint224 encoded = UQ112x112.encode(value);
+        
+        assertEq(encoded, 0, "Encoding zero should result in zero");
+    }
+    
+    function testEncodeLargeNumber() public {
+        // Test with a value close to the max uint112
+        uint112 value = type(uint112).max;
+        uint224 encoded = UQ112x112.encode(value);
+        
+        uint224 expected = uint224(value) << 112;
+        
+        assertEq(encoded, expected, "Encoding should handle large numbers correctly");
     }
     
     function testUqdiv() public {
-        uint112 x = 100;
-        uint112 y = 10;
-        uint224 encoded = UQ112x112.encode(x);
-        uint224 result = UQ112x112.uqdiv(encoded, y);
-        uint224 expected = encoded / uint224(y);
-        assertEq(result, expected, "Uqdiv function should divide correctly");
+        uint224 encoded = UQ112x112.encode(5); // 5 * 2^112
+        uint112 divisor = 2;
+        
+        uint224 result = UQ112x112.uqdiv(encoded, divisor);
+        
+        // 5 * 2^112 / 2 = 2.5 * 2^112
+        uint224 expected = 12980742146337069071326240823050240;
+        
+        assertEq(result, expected, "Division should be performed correctly");
     }
     
-    function testLargeNumbers() public {
-        uint112 y = type(uint112).max; // Test with max value
-        uint224 result = UQ112x112.encode(y);
-        uint224 expected = uint224(y) * 2**112;
-        assertEq(result, expected, "Encode should handle max uint112 value");
+    function testUqdivByOne() public {
+        uint224 encoded = UQ112x112.encode(5); // 5 * 2^112
+        uint112 divisor = 1;
         
-        uint112 divisor = 3;
-        uint224 divResult = UQ112x112.uqdiv(result, divisor);
-        uint224 divExpected = result / uint224(divisor);
-        assertEq(divResult, divExpected, "Uqdiv should handle large encoded values");
+        uint224 result = UQ112x112.uqdiv(encoded, divisor);
+        
+        // Dividing by 1 should not change the value
+        assertEq(result, encoded, "Division by 1 should not change the value");
+    }
+    
+    function testDecode() public {
+        // Create an encoded value (7 * 2^112)
+        uint224 encoded = UQ112x112.encode(7);
+        
+        // Decode it - manually shift right by 112 bits and cast to uint112
+        uint112 decoded = uint112(encoded >> 112);
+        
+        // Should get back 7
+        assertEq(decoded, 7, "Decoding should recover the original value");
     }
 } 

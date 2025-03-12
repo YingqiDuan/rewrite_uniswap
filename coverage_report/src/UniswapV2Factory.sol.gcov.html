@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - lcov.info - src/UniswapV2Factory.sol</title>
+  <title>LCOV - lcov_filtered.info - src/UniswapV2Factory.sol</title>
   <link rel="stylesheet" type="text/css" href="../gcov.css">
 </head>
 
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test:</td>
-            <td class="headerValue">lcov.info</td>
+            <td class="headerValue">lcov_filtered.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntryHi">95.7&nbsp;%</td>
@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2025-03-11 15:39:42</td>
+            <td class="headerValue">2025-03-11 16:59:23</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryHi">100.0&nbsp;%</td>
@@ -74,29 +74,29 @@
 <span id="L12"><span class="lineNum">      12</span>              :     address[] public override allPairs;</span>
 <span id="L13"><span class="lineNum">      13</span>              : </span>
 <span id="L14"><span class="lineNum">      14</span>              : </span>
-<span id="L15"><span class="lineNum">      15</span> <span class="tlaGNC">          50 :     constructor(address _feeToSetter) {</span></span>
-<span id="L16"><span class="lineNum">      16</span> <span class="tlaGNC">          50 :         feeToSetter = _feeToSetter;</span></span>
+<span id="L15"><span class="lineNum">      15</span> <span class="tlaGNC">          59 :     constructor(address _feeToSetter) {</span></span>
+<span id="L16"><span class="lineNum">      16</span> <span class="tlaGNC">          59 :         feeToSetter = _feeToSetter;</span></span>
 <span id="L17"><span class="lineNum">      17</span>              :     }</span>
 <span id="L18"><span class="lineNum">      18</span>              : </span>
 <span id="L19"><span class="lineNum">      19</span> <span class="tlaGNC">           1 :     function allPairsLength() external view override returns (uint) {</span></span>
 <span id="L20"><span class="lineNum">      20</span> <span class="tlaGNC">           1 :         return allPairs.length;</span></span>
 <span id="L21"><span class="lineNum">      21</span>              :     }</span>
 <span id="L22"><span class="lineNum">      22</span>              : </span>
-<span id="L23"><span class="lineNum">      23</span> <span class="tlaGNC">          46 :     function createPair(address tokenA, address tokenB) external override returns (address pair) {</span></span>
-<span id="L24"><span class="lineNum">      24</span> <span class="tlaGNC">          46 :         require(tokenA != tokenB, 'UniswapV2: IDENTICAL_ADDRESSES');</span></span>
-<span id="L25"><span class="lineNum">      25</span> <span class="tlaGNC">          45 :         (address token0, address token1) = tokenA &lt; tokenB ? (tokenA, tokenB) : (tokenB, tokenA);</span></span>
-<span id="L26"><span class="lineNum">      26</span> <span class="tlaGNC">          45 :         require(token0 != address(0), 'UniswapV2: ZERO_ADDRESS');</span></span>
-<span id="L27"><span class="lineNum">      27</span> <span class="tlaGNC">          43 :         require(getPair[token0][token1] == address(0), 'UniswapV2: PAIR_EXISTS'); // single check is sufficient</span></span>
-<span id="L28"><span class="lineNum">      28</span> <span class="tlaGNC">          41 :         bytes memory bytecode = type(UniswapV2Pair).creationCode;</span></span>
-<span id="L29"><span class="lineNum">      29</span> <span class="tlaGNC">          41 :         bytes32 salt = keccak256(abi.encodePacked(token0, token1));</span></span>
+<span id="L23"><span class="lineNum">      23</span> <span class="tlaGNC">          52 :     function createPair(address tokenA, address tokenB) external override returns (address pair) {</span></span>
+<span id="L24"><span class="lineNum">      24</span> <span class="tlaGNC">          52 :         require(tokenA != tokenB, 'UniswapV2: IDENTICAL_ADDRESSES');</span></span>
+<span id="L25"><span class="lineNum">      25</span> <span class="tlaGNC">          51 :         (address token0, address token1) = tokenA &lt; tokenB ? (tokenA, tokenB) : (tokenB, tokenA);</span></span>
+<span id="L26"><span class="lineNum">      26</span> <span class="tlaGNC">          51 :         require(token0 != address(0), 'UniswapV2: ZERO_ADDRESS');</span></span>
+<span id="L27"><span class="lineNum">      27</span> <span class="tlaGNC">          49 :         require(getPair[token0][token1] == address(0), 'UniswapV2: PAIR_EXISTS'); // single check is sufficient</span></span>
+<span id="L28"><span class="lineNum">      28</span> <span class="tlaGNC">          47 :         bytes memory bytecode = type(UniswapV2Pair).creationCode;</span></span>
+<span id="L29"><span class="lineNum">      29</span> <span class="tlaGNC">          47 :         bytes32 salt = keccak256(abi.encodePacked(token0, token1));</span></span>
 <span id="L30"><span class="lineNum">      30</span>              :         assembly {</span>
 <span id="L31"><span class="lineNum">      31</span> <span class="tlaUNC">           0 :             pair := create2(0, add(bytecode, 32), mload(bytecode), salt)</span></span>
 <span id="L32"><span class="lineNum">      32</span>              :         }</span>
-<span id="L33"><span class="lineNum">      33</span> <span class="tlaGNC">          41 :         IUniswapV2Pair(pair).initialize(token0, token1);</span></span>
-<span id="L34"><span class="lineNum">      34</span> <span class="tlaGNC">          41 :         getPair[token0][token1] = pair;</span></span>
-<span id="L35"><span class="lineNum">      35</span> <span class="tlaGNC">          41 :         getPair[token1][token0] = pair; // populate mapping in the reverse direction</span></span>
-<span id="L36"><span class="lineNum">      36</span> <span class="tlaGNC">          41 :         allPairs.push(pair);</span></span>
-<span id="L37"><span class="lineNum">      37</span> <span class="tlaGNC">          41 :         emit PairCreated(token0, token1, pair, allPairs.length);</span></span>
+<span id="L33"><span class="lineNum">      33</span> <span class="tlaGNC">          47 :         IUniswapV2Pair(pair).initialize(token0, token1);</span></span>
+<span id="L34"><span class="lineNum">      34</span> <span class="tlaGNC">          47 :         getPair[token0][token1] = pair;</span></span>
+<span id="L35"><span class="lineNum">      35</span> <span class="tlaGNC">          47 :         getPair[token1][token0] = pair; // populate mapping in the reverse direction</span></span>
+<span id="L36"><span class="lineNum">      36</span> <span class="tlaGNC">          47 :         allPairs.push(pair);</span></span>
+<span id="L37"><span class="lineNum">      37</span> <span class="tlaGNC">          47 :         emit PairCreated(token0, token1, pair, allPairs.length);</span></span>
 <span id="L38"><span class="lineNum">      38</span>              :     }</span>
 <span id="L39"><span class="lineNum">      39</span>              : </span>
 <span id="L40"><span class="lineNum">      40</span> <span class="tlaGNC">           4 :     function setFeeTo(address _feeTo) external override {</span></span>

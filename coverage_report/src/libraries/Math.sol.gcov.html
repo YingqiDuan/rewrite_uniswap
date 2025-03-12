@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - lcov.info - src/libraries/Math.sol</title>
+  <title>LCOV - lcov_filtered.info - src/libraries/Math.sol</title>
   <link rel="stylesheet" type="text/css" href="../../gcov.css">
 </head>
 
@@ -28,16 +28,16 @@
           </tr>
           <tr>
             <td class="headerItem">Test:</td>
-            <td class="headerValue">lcov.info</td>
+            <td class="headerValue">lcov_filtered.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntryMed">81.8&nbsp;%</td>
+            <td class="headerCovTableEntryHi">100.0&nbsp;%</td>
             <td class="headerCovTableEntry">11</td>
-            <td class="headerCovTableEntry">9</td>
+            <td class="headerCovTableEntry">11</td>
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2025-03-11 15:39:42</td>
+            <td class="headerValue">2025-03-11 16:59:23</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryHi">100.0&nbsp;%</td>
@@ -66,21 +66,21 @@
 <span id="L4"><span class="lineNum">       4</span>              : // a library for performing various math operations</span>
 <span id="L5"><span class="lineNum">       5</span>              : </span>
 <span id="L6"><span class="lineNum">       6</span>              : library Math {</span>
-<span id="L7"><span class="lineNum">       7</span> <span class="tlaGNC">           7 :     function min(uint x, uint y) internal pure returns (uint z) {</span></span>
-<span id="L8"><span class="lineNum">       8</span> <span class="tlaGNC">           7 :         z = x &lt; y ? x : y;</span></span>
+<span id="L7"><span class="lineNum">       7</span> <span class="tlaGNC">          11 :     function min(uint x, uint y) internal pure returns (uint z) {</span></span>
+<span id="L8"><span class="lineNum">       8</span> <span class="tlaGNC">          11 :         z = x &lt; y ? x : y;</span></span>
 <span id="L9"><span class="lineNum">       9</span>              :     }</span>
 <span id="L10"><span class="lineNum">      10</span>              : </span>
 <span id="L11"><span class="lineNum">      11</span>              :     // babylonian method (https://en.wikipedia.org/wiki/Methods_of_computing_square_roots#Babylonian_method)</span>
-<span id="L12"><span class="lineNum">      12</span> <span class="tlaGNC">          43 :     function sqrt(uint y) internal pure returns (uint z) {</span></span>
-<span id="L13"><span class="lineNum">      13</span> <span class="tlaGNC">          43 :         if (y &gt; 3) {</span></span>
-<span id="L14"><span class="lineNum">      14</span> <span class="tlaGNC">          43 :             z = y;</span></span>
-<span id="L15"><span class="lineNum">      15</span> <span class="tlaGNC">          43 :             uint x = y / 2 + 1;</span></span>
-<span id="L16"><span class="lineNum">      16</span> <span class="tlaGNC">        2995 :             while (x &lt; z) {</span></span>
-<span id="L17"><span class="lineNum">      17</span> <span class="tlaGNC">        2952 :                 z = x;</span></span>
-<span id="L18"><span class="lineNum">      18</span> <span class="tlaGNC">        2952 :                 x = (y / x + x) / 2;</span></span>
+<span id="L12"><span class="lineNum">      12</span> <span class="tlaGNC">          56 :     function sqrt(uint y) internal pure returns (uint z) {</span></span>
+<span id="L13"><span class="lineNum">      13</span> <span class="tlaGNC">          56 :         if (y &gt; 3) {</span></span>
+<span id="L14"><span class="lineNum">      14</span> <span class="tlaGNC">          52 :             z = y;</span></span>
+<span id="L15"><span class="lineNum">      15</span> <span class="tlaGNC">          52 :             uint x = y / 2 + 1;</span></span>
+<span id="L16"><span class="lineNum">      16</span> <span class="tlaGNC">        3314 :             while (x &lt; z) {</span></span>
+<span id="L17"><span class="lineNum">      17</span> <span class="tlaGNC">        3262 :                 z = x;</span></span>
+<span id="L18"><span class="lineNum">      18</span> <span class="tlaGNC">        3262 :                 x = (y / x + x) / 2;</span></span>
 <span id="L19"><span class="lineNum">      19</span>              :             }</span>
-<span id="L20"><span class="lineNum">      20</span> <span class="tlaUNC">           0 :         } else if (y != 0) {</span></span>
-<span id="L21"><span class="lineNum">      21</span> <span class="tlaUNC">           0 :             z = 1;</span></span>
+<span id="L20"><span class="lineNum">      20</span> <span class="tlaGNC">           4 :         } else if (y != 0) {</span></span>
+<span id="L21"><span class="lineNum">      21</span> <span class="tlaGNC">           3 :             z = 1;</span></span>
 <span id="L22"><span class="lineNum">      22</span>              :         }</span>
 <span id="L23"><span class="lineNum">      23</span>              :     }</span>
 <span id="L24"><span class="lineNum">      24</span>              : }</span>

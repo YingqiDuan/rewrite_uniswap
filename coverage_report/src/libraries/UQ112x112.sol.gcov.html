@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - lcov.info - src/libraries/UQ112x112.sol</title>
+  <title>LCOV - lcov_filtered.info - src/libraries/UQ112x112.sol</title>
   <link rel="stylesheet" type="text/css" href="../../gcov.css">
 </head>
 
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test:</td>
-            <td class="headerValue">lcov.info</td>
+            <td class="headerValue">lcov_filtered.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntryHi">100.0&nbsp;%</td>
@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2025-03-11 15:39:42</td>
+            <td class="headerValue">2025-03-11 16:59:23</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryHi">100.0&nbsp;%</td>
@@ -72,8 +72,8 @@
 <span id="L10"><span class="lineNum">      10</span>              :     uint224 constant Q112 = 2**112;</span>
 <span id="L11"><span class="lineNum">      11</span>              : </span>
 <span id="L12"><span class="lineNum">      12</span>              :     // encode a uint112 as a UQ112x112</span>
-<span id="L13"><span class="lineNum">      13</span> <span class="tlaGNC">           3 :     function encode(uint112 y) internal pure returns (uint224 z) {</span></span>
-<span id="L14"><span class="lineNum">      14</span> <span class="tlaGNC">           3 :         z = uint224(y) * Q112; // never overflows</span></span>
+<span id="L13"><span class="lineNum">      13</span> <span class="tlaGNC">           6 :     function encode(uint112 y) internal pure returns (uint224 z) {</span></span>
+<span id="L14"><span class="lineNum">      14</span> <span class="tlaGNC">           6 :         z = uint224(y) * Q112; // never overflows</span></span>
 <span id="L15"><span class="lineNum">      15</span>              :     }</span>
 <span id="L16"><span class="lineNum">      16</span>              : </span>
 <span id="L17"><span class="lineNum">      17</span>              :     // divide a UQ112x112 by a uint112, returning a UQ112x112</span>

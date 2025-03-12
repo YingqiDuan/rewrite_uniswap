@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - lcov.info - src/libraries/SafeMath.sol</title>
+  <title>LCOV - lcov_filtered.info - src/libraries/SafeMath.sol</title>
   <link rel="stylesheet" type="text/css" href="../../gcov.css">
 </head>
 
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test:</td>
-            <td class="headerValue">lcov.info</td>
+            <td class="headerValue">lcov_filtered.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntryHi">100.0&nbsp;%</td>
@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2025-03-11 15:39:42</td>
+            <td class="headerValue">2025-03-11 16:59:23</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryHi">100.0&nbsp;%</td>
@@ -67,16 +67,16 @@
 <span id="L5"><span class="lineNum">       5</span>              : // 在0.8.0+版本中整数操作已自动检查溢出，但我们保留SafeMath以保持原始逻辑</span>
 <span id="L6"><span class="lineNum">       6</span>              : </span>
 <span id="L7"><span class="lineNum">       7</span>              : library SafeMath {</span>
-<span id="L8"><span class="lineNum">       8</span> <span class="tlaGNC">         214 :     function add(uint x, uint y) internal pure returns (uint z) {</span></span>
-<span id="L9"><span class="lineNum">       9</span> <span class="tlaGNC">         214 :         require((z = x + y) &gt;= x, 'ds-math-add-overflow');</span></span>
+<span id="L8"><span class="lineNum">       8</span> <span class="tlaGNC">         232 :     function add(uint x, uint y) internal pure returns (uint z) {</span></span>
+<span id="L9"><span class="lineNum">       9</span> <span class="tlaGNC">         232 :         require((z = x + y) &gt;= x, 'ds-math-add-overflow');</span></span>
 <span id="L10"><span class="lineNum">      10</span>              :     }</span>
 <span id="L11"><span class="lineNum">      11</span>              : </span>
-<span id="L12"><span class="lineNum">      12</span> <span class="tlaGNC">         233 :     function sub(uint x, uint y) internal pure returns (uint z) {</span></span>
-<span id="L13"><span class="lineNum">      13</span> <span class="tlaGNC">         233 :         require((z = x - y) &lt;= x, 'ds-math-sub-underflow');</span></span>
+<span id="L12"><span class="lineNum">      12</span> <span class="tlaGNC">         254 :     function sub(uint x, uint y) internal pure returns (uint z) {</span></span>
+<span id="L13"><span class="lineNum">      13</span> <span class="tlaGNC">         254 :         require((z = x - y) &lt;= x, 'ds-math-sub-underflow');</span></span>
 <span id="L14"><span class="lineNum">      14</span>              :     }</span>
 <span id="L15"><span class="lineNum">      15</span>              : </span>
-<span id="L16"><span class="lineNum">      16</span> <span class="tlaGNC">         425 :     function mul(uint x, uint y) internal pure returns (uint z) {</span></span>
-<span id="L17"><span class="lineNum">      17</span> <span class="tlaGNC">         425 :         require(y == 0 || (z = x * y) / y == x, 'ds-math-mul-overflow');</span></span>
+<span id="L16"><span class="lineNum">      16</span> <span class="tlaGNC">         429 :     function mul(uint x, uint y) internal pure returns (uint z) {</span></span>
+<span id="L17"><span class="lineNum">      17</span> <span class="tlaGNC">         429 :         require(y == 0 || (z = x * y) / y == x, 'ds-math-mul-overflow');</span></span>
 <span id="L18"><span class="lineNum">      18</span>              :     }</span>
 <span id="L19"><span class="lineNum">      19</span>              : }</span>
         </pre>

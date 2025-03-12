@@ -7,6 +7,9 @@ import "../src/UniswapV2Factory.sol";
 import "../src/libraries/UQ112x112.sol";
 import "../src/libraries/Math.sol";
 import "../src/interfaces/IUniswapV2Callee.sol";
+import "forge-std/Test.sol";
+import "../src/UniswapV2ERC20.sol";
+import "./mocks/ERC20Mock.sol";
 
 // Flash swap borrower mock contract
 contract FlashBorrower is IUniswapV2Callee {
@@ -38,7 +41,14 @@ contract FlashBorrower is IUniswapV2Callee {
     }
 }
 
-contract UniswapV2PairTest is TestUtils {
+// Mock contract to test uniswapV2Call
+contract MockFlashSwapRecipient is IUniswapV2Callee {
+    function uniswapV2Call(address sender, uint amount0, uint amount1, bytes calldata data) external override {
+        // Do nothing, just a mock
+    }
+}
+
+contract UniswapV2PairTest is Test, TestUtils {
     // Events
     event Mint(address indexed sender, uint amount0, uint amount1);
     event Burn(address indexed sender, uint amount0, uint amount1, address indexed to);
@@ -580,6 +590,21 @@ contract UniswapV2PairTest is TestUtils {
         // 尝试使用过期的deadline，应该会失败
         vm.expectRevert("UniswapV2: EXPIRED");
         pair.permit(owner, spender, value, expiredDeadline, v, r, s);
+    }
+    
+    // Test the ERC20 constructor to cover the assembly block
+    function testERC20Constructor() public {
+        // Deploy a new ERC20 contract to ensure the constructor runs
+        UniswapV2ERC20 token = new UniswapV2ERC20();
+        
+        // Verify that the DOMAIN_SEPARATOR was set correctly
+        bytes32 domainSeparator = token.DOMAIN_SEPARATOR();
+        assertTrue(domainSeparator != bytes32(0), "DOMAIN_SEPARATOR should be set");
+        
+        // Verify other constants
+        assertEq(token.name(), "Uniswap V2", "Name should be set correctly");
+        assertEq(token.symbol(), "UNI-V2", "Symbol should be set correctly");
+        assertEq(token.decimals(), 18, "Decimals should be set correctly");
     }
     
     // ============ Sync and Skim Functions Tests ============

@@ -57,6 +57,21 @@ contract TestUtils is Test {
         vm.stopPrank();
     }
     
+    // Helper methods for setting up contracts
+    function setupFactory() public {
+        vm.startPrank(OWNER);
+        factory = new UniswapV2Factory(OWNER);
+        vm.stopPrank();
+    }
+    
+    function setupWeth() public {
+        weth = new WETH9();
+    }
+    
+    function setupRouter() public {
+        router = new UniswapV2Router02(address(factory), address(weth));
+    }
+    
     // Helper function to create a pair through factory
     function createPair(address tokenA, address tokenB) public returns (address pair) {
         pair = factory.createPair(tokenA, tokenB);
