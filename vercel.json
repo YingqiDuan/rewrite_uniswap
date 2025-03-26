@@ -1,0 +1,5 @@
+{
+  "buildCommand": "NEXT_LINT_DISABLE=1 next build",
+  "installCommand": "yarn install",
+  "framework": "nextjs"
+} 
